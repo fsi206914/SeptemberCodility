@@ -56,7 +56,6 @@ class Solution {
         System.out.print( (Integer)object + "  ");
         }
         System.out.println( "  ");
-
     }
 
     public int solution(int[] A) {
@@ -78,65 +77,63 @@ class Solution {
 			copyHashSet(backward.get( length -i - 2 ), backward.get( length -i - 1)  );
 			backward.get( backward.size()-1 ).add(A[i]);
         }
-       
+
 		boolean notAdd = false; 
-        while(forw_point < length && back_point >=0 ){
+		while(forw_point < length && back_point >=0 ){
 			if(Number>1000000000) return 1000000000;
 
 			if(forw_point > 0 && notAdd ){
-			//if(forw_point > 0 ){
-
 				Number += CurrNumber;
 				state = 1;
 			}
 			else{
-        	state = match(A, forw_point, back_point);
-        	}
-                if(state == 1){
+				state = match(A, forw_point, back_point);
+			}
+			if(state == 1){
 				forw_point++;
 				if(forw_point >=length) break;
 				if(forwardSet.contains(A[forw_point])  ) {notAdd = true;   }
-                else{
-				forwardSet.add(A[forw_point]);
-				notAdd = false;
+				else{
+					forwardSet.add(A[forw_point]);
+					notAdd = false;
 				}
 
-                continue;
-            	}
-            
-                if(state == 2){
-			    	back_point--;
-					notAdd = false; 
- 			    	if(back_point <0) break;
-               	    continue;
-            	}          
+				continue;
+			}
 
-            
-                if(state == 3){
-            	back_point--; 
-                    
+			if(state == 2){
+				back_point--;
+				notAdd = false; 
+				if(back_point <0) break;
+				continue;
+			}          
+
+
+			if(state == 3){
+				back_point--; 
+
 				forw_point++;
 				if(forw_point >=length) break;
 				if(forwardSet.contains(A[forw_point])  ) {notAdd = true;   }
-                else{
-				forwardSet.add(A[forw_point]);
-				notAdd = false;
+				else{
+					forwardSet.add(A[forw_point]);
+					notAdd = false;
 				}
 
-                continue;
-            	}    
-        }
-        return Number;
-    
-    }
+				continue;
+			}    
+		}
+		return Number;
 
-public static void main(String[] args){
+	}
 
-	int A[] = {4,4,7,4,1,3,2,7,6,1,2,4};
-	//int A[] = {3,5,7,3,3,5};
-	Solution Solu = new Solution();
-	System.out.println(Solu.solution(A));
+	public static void main(String[] args){
 
-}
+		int A[] = {4,4,7,4,1,3,2,7,6,1,2,4};
+		//int A[] = {3,5,7,3,3,5};
+		Solution Solu = new Solution();
+		System.out.println(Solu.solution(A));
+
+	}
 }
 
